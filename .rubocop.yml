@@ -1,0 +1,12 @@
+AllCops:
+  Exclude:
+    - 'bin/*'
+    - Gemfile
+    - Rakefile
+    - config/**/*
+    - 'vendor/**/*'
+    - 'db/**/*'
+    - 'node_modules/**/*'
+
+Style/Documentation:
+  Enabled: false
