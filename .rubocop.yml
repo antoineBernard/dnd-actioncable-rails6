@@ -6,6 +6,8 @@ AllCops:
     - config/**/*
     - 'vendor/**/*'
     - 'db/**/*'
+    - 'spec/spec_helper.rb'
+    - 'spec/rails_helper.rb'
     - 'node_modules/**/*'
 
 Style/Documentation:
