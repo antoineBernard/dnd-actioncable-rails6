@@ -5,7 +5,7 @@
 
 Git clone
 ---------
-# In progress
+git clone https://github.com/antoineBernard/dnd-actioncable-rails6.git
 
 RVM install
 ---------
