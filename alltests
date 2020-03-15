@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+bundle exec rspec spec
+echo ""
+echo "Rails specs finished ! Yepeee !"
+echo ""
+bundle exec yarn test
+echo ""
+echo "Yarn tests finished ! Y.. Ye... Yepee..."
+echo ""
+sh alllinters

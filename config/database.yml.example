@@ -1,10 +1,10 @@
 connection: &connection
   adapter: postgresql
   host: ''
-  username: abernard
+  username: # YOUR USERNAME HERE
+  password: # YOUR PASSWORD HERE
   encoding: utf8
   min_messages: warning
-
 development:
   database: dnd_development
   <<: *connection

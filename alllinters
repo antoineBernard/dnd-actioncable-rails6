@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+bundle exec rubocop
+echo ""
+echo "Wouhou Rubocop finished :D ! Yepeee !"
+echo ""
+yarn lint
+echo ""
+echo "ESLint is finished, what a wonderful day ! Yepeee !"
+echo ""
