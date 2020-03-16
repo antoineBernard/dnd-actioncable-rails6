@@ -20,8 +20,13 @@ Install ruby 2.7.0 (with RVM)
 
 Install Postgresql and start service (on MacOS)
 ---------
-     brew install postgresql
-     brew services start postgresql
+* MacOS
+   brew install postgresql
+   brew services start postgresql
+
+* Linux
+  sudo apt-get install postgres libpq-dev
+  sudo service postgresql start
 
 Install Bundle
 ---------
@@ -32,7 +37,6 @@ Install Yarn
 ---------
 	brew install yarn
 	yarn install
-
 
 Configure database.yml
 ---------
