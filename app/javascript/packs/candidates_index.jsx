@@ -7,6 +7,17 @@ import CardBoard from './CardBoard'
 const CandidatesIndex = () => {
   const [data, setData] = useState(null)
 
+  useEffect(() => {
+    async function fetchData() {
+      await fetch('/candidates.json')
+      .then(res => res.json())
+      .then(res => {setData(res)})
+    }
+    fetchData()
+  }, [])
+
+  if(!data) { return(null) }
+
   consumer.subscriptions.create("CandidatesChannel", {
     connected() {
       console.log('Connected to candidates channel !')
@@ -18,20 +29,24 @@ const CandidatesIndex = () => {
     },
 
     received(data) {
-      // Called when there's incoming data on the websocket for this channel
+      const updatedCandidate = data.updatedCandidate
+
+      updateCandidate(updatedCandidate)
     }
   });
 
-  useEffect(() => {
-    async function fetchData() {
-      await fetch('/candidates.json')
-      .then(res => res.json())
-      .then(res => {setData(res)})
-    }
-    fetchData()
-  }, [])
+  const updateCandidate = (updatedCandidate) => {
+    setData({
+      status:     data.status,
+      candidates: data.candidates.map((candidate) => {
+        if(candidate.id === updatedCandidate.id) {
+          candidate.status = updatedCandidate.status
+        }
 
-  if(!data) { return(null) }
+        return(candidate)
+      })
+    })
+  }
 
   return(
     <div className='candidates-react-component'>

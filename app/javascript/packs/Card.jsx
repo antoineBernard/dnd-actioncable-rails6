@@ -4,9 +4,12 @@ import PropTypes from 'prop-types'
 const Card = ({candidate}) => {
   if(!candidate) { return null }
 
-  debugger;
+  const updateData = () => {
+    fetch(`/update_status/${candidate.id}/hr_interview`, { method: 'post' })
+  }
+
   return(
-    <div className='card'>
+    <div className='card' onClick={updateData}>
       {candidate.firstName + ' ' + candidate.lastName}
     </div>
   )

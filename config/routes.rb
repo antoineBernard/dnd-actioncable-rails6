@@ -3,4 +3,6 @@ Rails.application.routes.draw do
   root 'candidates#index'
 
   resources :candidates, only: %i(index)
+
+  post 'update_status/:id/:status', to: 'candidates#update_status', as: :update_status
 end
