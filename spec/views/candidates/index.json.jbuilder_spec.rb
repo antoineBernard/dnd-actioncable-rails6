@@ -19,8 +19,11 @@ RSpec.describe 'candidates/index.json.jbuilder', type: :view do
           expect(json_candidate['firstName']) .to eq candidate.first_name
           expect(json_candidate['lastName'])  .to eq candidate.last_name
           expect(json_candidate['jobTitle'])  .to eq candidate.role
+          expect(json_candidate['status']) .to eq candidate.status
           expect(json_candidate['score'])     .to eq candidate.score
           expect(json_candidate['likes'])     .to eq candidate.likes
+
+          expect(json_candidate.length).to eq 7
         end
       end
     end
