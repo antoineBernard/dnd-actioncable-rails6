@@ -1,3 +1,6 @@
+body
+  background-color: #efedef
+
 .candidates-react-component
   display: flex
 
@@ -5,13 +8,18 @@
     display: flex
     flex-direction: column
     padding: 10px
-    min-width: 100px
+    min-height: 285px
+    min-width: 245px
     box-shadow: 0 1px 3px 0 #d4d4d5
     margin-right: 16px
 
     .title
       margin-bottom: 20px
-      font-size: 18px
+      font-size: 16px
+      font-weight: bold
+      text-transform: uppercase
+      color: #37455b
+
       span
         font-size: 10px
         margin-left: 8px
@@ -22,10 +30,55 @@
     .card-board
       display: flex
       flex-direction: column
-      min-height: 285px
 
       .card
         background-color: white
-        padding: 5px
         margin-bottom: 10px
         box-shadow: 0 1px 3px 0 #d4d4d5
+        border-radius: 5px
+        color: grey
+
+        .info-candidate
+          display: flex
+          padding: 5px
+
+          svg
+            padding-top: 15px
+            padding-left: 8px
+            fill: grey
+
+          .description
+            font-size: 14px
+            margin-top: 10px
+            margin-left: 15px
+
+            .fullname
+              font-weight: bold
+              margin-bottom: 8px
+              color: black
+
+        .stats
+          border-top: solid 1px rgba(0, 0, 0, 0.1)
+          padding: 8px 15px
+
+          span:not(:first-child)
+            margin: 0 10px
+            font-size: 14px
+
+          span:last-child svg
+            position: relative
+            top: 2px
+
+
+          .score
+            font-size: 12px
+            font-weight: bold
+            color: white
+            background-color: #59b797
+            padding: 2px 4px
+            border-radius: 4px
+
+          svg
+            color: rgba(0, 0, 0, 0.2)
+            fill: rgba(0, 0, 0, 0.2)
+            margin-right: 4px

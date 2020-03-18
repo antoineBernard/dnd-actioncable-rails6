@@ -8,6 +8,6 @@ json.candidates @candidates do |candidate|
   json.lastName  candidate.last_name
   json.jobTitle  candidate.role
   json.status    candidate.status
-  json.score     candidate.score
+  json.score     candidate.score.round(1)
   json.likes     candidate.likes
 end

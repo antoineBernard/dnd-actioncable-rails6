@@ -1,5 +1,6 @@
 import React from 'react'
 import { Draggable } from 'react-beautiful-dnd';
+import { thumbsUp, ThumbsUp, MessageSquare, User } from 'react-feather'
 import PropTypes from 'prop-types'
 
 const Card = ({candidate, index}) => {
@@ -14,7 +15,18 @@ const Card = ({candidate, index}) => {
           {...provided.dragHandleProps}
           ref={provided.innerRef}
         >
-          {candidate.firstName + ' ' + candidate.lastName}
+          <div className='info-candidate'>
+            <User />
+            <div className='description'>
+              <div className='fullname'>{candidate.firstName + ' ' + candidate.lastName}</div>
+              <div className='job-title'>{candidate.jobTitle}</div>
+            </div>
+          </div>
+          <div className='stats'>
+            <span className='score'>{candidate.score}</span>
+            <span><ThumbsUp      size={13} />{candidate.likes}</span>
+            <span><MessageSquare size={13} />x</span>
+          </div>
         </div>
       )}
     </Draggable>
