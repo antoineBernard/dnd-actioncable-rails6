@@ -1,17 +1,23 @@
 import React from 'react'
+import { Draggable } from 'react-beautiful-dnd';
 import PropTypes from 'prop-types'
 
-const Card = ({candidate}) => {
+const Card = ({candidate, index}) => {
   if(!candidate) { return null }
 
-  const updateData = () => {
-    fetch(`/update_status/${candidate.id}/hr_interview`, { method: 'post' })
-  }
-
   return(
-    <div className='card' onClick={updateData}>
-      {candidate.firstName + ' ' + candidate.lastName}
-    </div>
+    <Draggable draggableId={`${candidate.id}`} index={index}>
+      {(provided) => (
+        <div
+          className='card'
+          {...provided.draggableProps}
+          {...provided.dragHandleProps}
+          ref={provided.innerRef}
+        >
+          {candidate.firstName + ' ' + candidate.lastName}
+        </div>
+      )}
+    </Draggable>
   )
 }
 

@@ -1,10 +1,10 @@
 .candidates-react-component
   display: flex
 
-  .card-board
+  .column
     display: flex
-    padding: 10px
     flex-direction: column
+    padding: 10px
     min-width: 100px
     box-shadow: 0 1px 3px 0 #d4d4d5
     margin-right: 16px
@@ -19,6 +19,13 @@
         padding: 5px
         border-radius: 50%
 
-    .card
-      padding: 5px
-      box-shadow: 0 1px 3px 0 #d4d4d5
+    .card-board
+      display: flex
+      flex-direction: column
+      min-height: 285px
+
+      .card
+        background-color: white
+        padding: 5px
+        margin-bottom: 10px
+        box-shadow: 0 1px 3px 0 #d4d4d5
