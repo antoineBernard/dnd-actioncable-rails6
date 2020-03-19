@@ -51,6 +51,16 @@ Create database
     rails db:create
     rails db:migrate
 
+Create fake data
+---------
+    rails db:seed
+
+Run local server
+---------
+    rails s
+
+Then look on localhost:3000 !
+
 Run tests and linters
 ---------
     sh alltests
