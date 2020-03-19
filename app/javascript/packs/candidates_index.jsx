@@ -56,7 +56,7 @@ const CandidatesIndex = () => {
     let candidateToUpdate = { id: draggableId, status: destination.droppableId }
 
     updateCandidate(candidateToUpdate)
-    fetch(`/update_status/${candidateToUpdate.id}/${candidateToUpdate.status}`, { method: 'post' })
+    fetch(`candidates/${candidateToUpdate.id}/update_status/${candidateToUpdate.status}.json`, { method: 'post' })
   }
 
   const statusValues = Object.values(data.status)

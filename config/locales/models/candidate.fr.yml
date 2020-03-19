@@ -3,3 +3,10 @@ fr:
   hr_interview:      Entretien RH
   tech_review:       Test technique
   manager_interview: Entretien Manager
+  activerecord:
+    errors:
+      models:
+        candidate:
+          attributes:
+            status:
+              inclusion: Le status n'est pas inclus dans la liste des status disponibles

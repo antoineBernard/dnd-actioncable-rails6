@@ -15,10 +15,16 @@ class CandidatesController < ApplicationController
   def update_status
     candidate = Candidate.find(params[:id])
 
-    candidate.update_attributes(status: params[:status])
+    candidate.assign_attributes(status: params[:status])
 
-    ActionCable.server.broadcast 'candidates_channel', updatedCandidate: {
-      id: candidate.id, status: candidate.status
-    }
+    if candidate.save
+      ActionCable.server.broadcast 'candidates_channel', updatedCandidate: {
+        id: candidate.id, status: candidate.status
+      }
+
+      render plain: { success: true }.to_json, status: 200, content_type: 'application/json'
+    else
+      render json: { error: candidate.errors.messages }, status: :bad_request
+    end
   end
 end

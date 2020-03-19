@@ -28,9 +28,9 @@ RSpec.describe CandidatesController, type: :controller do
       server_double = double 'server_double'
       expect(ActionCable).to receive(:server).and_return server_double
       expect(server_double).to receive(:broadcast).with('candidates_channel',
-        updatedCandidate: {
-          id: candidate_to_promote.id, status: 'hr_interview'
-        })
+                                                        updatedCandidate: {
+                                                          id: candidate_to_promote.id, status: 'hr_interview'
+                                                        })
     end
 
     specify do
