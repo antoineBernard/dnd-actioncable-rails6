@@ -9,6 +9,12 @@ RSpec.describe 'candidates/index.json.jbuilder', type: :view do
 
   subject!(:json_candidates) { JSON.parse(render)['candidates'] }
 
+  context 'display status collection' do
+    let(:expected_status) { CandidateDecorator.status_collection }
+
+    it { expect(JSON.parse(render)['status']).to eq expected_status }
+  end
+
   context 'display candidates information' do
     it do
       candidates.each_with_index do |candidate, index|

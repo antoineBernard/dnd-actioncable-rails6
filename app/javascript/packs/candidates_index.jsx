@@ -59,14 +59,18 @@ const CandidatesIndex = () => {
     fetch(`/update_status/${candidateToUpdate.id}/${candidateToUpdate.status}`, { method: 'post' })
   }
 
+  const statusValues = Object.values(data.status)
+  const statusTrad   = Object.keys(data.status)
+
   return(
     <DragDropContext onDragEnd={onDragEnd}>
       <div className='candidates-react-component'>
         {
-          data.status.map((status, index) => {
+          statusValues.map((status, index) => {
             return(
               <CardBoard
-                title={status}
+                title={statusTrad[index]}
+                statusValue={status}
                 candidates={data.candidates.filter((candidate) => { return(candidate.status === status) })}
                 key={index}
               />

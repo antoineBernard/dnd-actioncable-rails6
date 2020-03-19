@@ -16,6 +16,18 @@ Style/Documentation:
 Layout/LineLength:
   Enabled: false
 
+Metrics/MethodLength:
+  Exclude:
+    - 'app/decorators/concerns/translatable.rb'
+
+Metrics/AbcSize:
+  Exclude:
+    - 'app/decorators/concerns/translatable.rb'
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/support/matcher/translate_field_values_matcher.rb'
+
 Style/HashEachMethods:
   Enabled: true
 Style/HashTransformKeys:

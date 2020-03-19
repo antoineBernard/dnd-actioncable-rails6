@@ -3,11 +3,11 @@ import { Droppable } from 'react-beautiful-dnd'
 import PropTypes from 'prop-types'
 import Card from './Card'
 
-const CardBoard = ({title, candidates}) => {
+const CardBoard = ({title, statusValue, candidates}) => {
   return(
     <div className='column'>
       <div className='title'>{title}<span>{candidates.length}</span></div>
-      <Droppable droppableId={title}>
+      <Droppable droppableId={statusValue}>
         {
           (provided, snapshot) => (
             <div

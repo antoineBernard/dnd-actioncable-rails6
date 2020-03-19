@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-json.status Candidate::STATUS_VALUES
+json.status CandidateDecorator.status_collection
 
 json.candidates @candidates do |candidate|
   json.id        candidate.id
