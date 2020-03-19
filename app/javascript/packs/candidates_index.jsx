@@ -14,11 +14,13 @@ const CandidatesIndex = () => {
       .then(res => res.json())
       .then(res => {setData(res)})
     }
+
     fetchData()
   }, [])
 
   if(!data) { return(null) }
 
+  // Sub to backend websocket
   consumer.subscriptions.create("CandidatesChannel", {
     connected() { console.log('Connected to candidates channel !') },
     received(data) {
@@ -51,7 +53,10 @@ const CandidatesIndex = () => {
       destination.index === source.index
     ) { return; }
 
-    fetch(`/update_status/${draggableId}/${destination.droppableId}`, { method: 'post' })
+    let candidateToUpdate = { id: draggableId, status: destination.droppableId }
+
+    updateCandidate(candidateToUpdate)
+    fetch(`/update_status/${candidateToUpdate.id}/${candidateToUpdate.status}`, { method: 'post' })
   }
 
   return(

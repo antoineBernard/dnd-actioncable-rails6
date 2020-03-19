@@ -17,6 +17,8 @@ class CandidatesController < ApplicationController
 
     candidate.update_attributes(status: params[:status])
 
-    ActionCable.server.broadcast 'candidates_channel', updatedCandidate: { id: candidate.id, status: candidate.status }
+    ActionCable.server.broadcast 'candidates_channel', updatedCandidate: {
+      id: candidate.id, status: candidate.status
+    }
   end
 end

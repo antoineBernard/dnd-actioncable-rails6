@@ -9,9 +9,10 @@ const CardBoard = ({title, candidates}) => {
       <div className='title'>{title}<span>{candidates.length}</span></div>
       <Droppable droppableId={title}>
         {
-          (provided) => (
+          (provided, snapshot) => (
             <div
               className='card-board'
+              style={{ backgroundColor: `${snapshot.isDraggingOver ? 'lightblue' : 'white'}` }}
               ref={provided.innerRef}
               {...provided.doppableProps}
             >

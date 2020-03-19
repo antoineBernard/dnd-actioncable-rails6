@@ -12,3 +12,13 @@ AllCops:
 
 Style/Documentation:
   Enabled: false
+
+Layout/LineLength:
+  Enabled: false
+
+Style/HashEachMethods:
+  Enabled: true
+Style/HashTransformKeys:
+  Enabled: true
+Style/HashTransformValues:
+  Enabled: true
