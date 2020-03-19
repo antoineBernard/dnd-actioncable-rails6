@@ -24,6 +24,15 @@ RSpec.describe CandidatesController, type: :controller do
   describe 'POST update_status' do
     let!(:candidate_to_promote) { create :candidate, status: 'to_meet' }
 
+    before do
+      server_double = double 'server_double'
+      expect(ActionCable).to receive(:server).and_return server_double
+      expect(server_double).to receive(:broadcast).with('candidates_channel',
+        updatedCandidate: {
+          id: candidate_to_promote.id, status: 'hr_interview'
+        })
+    end
+
     specify do
       expect { post :update_status, params: { id: candidate_to_promote.id, status: 'hr_interview' } }
         .to change { candidate_to_promote.reload.status }.from('to_meet').to('hr_interview')
