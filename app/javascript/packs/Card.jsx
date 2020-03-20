@@ -25,7 +25,7 @@ const Card = ({candidate, index}) => {
           <div className='stats'>
             <span className='score'>{candidate.score}</span>
             <span><ThumbsUp      size={13} />{candidate.likes}</span>
-            <span><MessageSquare size={13} />x</span>
+            <span><MessageSquare size={13} />{candidate.rank}</span>
           </div>
         </div>
       )}

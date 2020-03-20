@@ -28,8 +28,9 @@ RSpec.describe 'candidates/index.json.jbuilder', type: :view do
           expect(json_candidate['status'])    .to eq candidate.status
           expect(json_candidate['score'])     .to eq candidate.score.round(1)
           expect(json_candidate['likes'])     .to eq candidate.likes
+          expect(json_candidate['rank'])      .to eq candidate.rank
 
-          expect(json_candidate.length).to eq 7
+          expect(json_candidate.length).to eq 8
         end
       end
     end

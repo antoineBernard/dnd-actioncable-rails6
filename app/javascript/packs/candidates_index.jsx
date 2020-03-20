@@ -22,26 +22,13 @@ const CandidatesIndex = () => {
 
   // Sub to backend websocket
   consumer.subscriptions.create("CandidatesChannel", {
-    connected() { console.log('Connected to candidates channel !') },
-    received(data) {
-      const updatedCandidate = data.updatedCandidate
-
-      updateCandidate(updatedCandidate)
+    received(updatedData) {
+     setData({
+       status: data.status,
+       candidates: JSON.parse(updatedData.updatedCandidates)
+     })
     }
   });
-
-  const updateCandidate = (updatedCandidate) => {
-    setData({
-      status:     data.status,
-      candidates: data.candidates.map((candidate) => {
-        if(candidate.id === updatedCandidate.id) {
-          candidate.status = updatedCandidate.status
-        }
-
-        return(candidate)
-      })
-    })
-  }
 
   const onDragEnd = result => {
     const { destination, source, draggableId } = result
@@ -49,14 +36,25 @@ const CandidatesIndex = () => {
     if(!destination) { return; }
 
     if(
+      // card didn't moove
       destination.droppableId === source.droppableId &&
       destination.index === source.index
     ) { return; }
 
-    let candidateToUpdate = { id: draggableId, status: destination.droppableId }
+    let candidateToUpdate = {
+      id: draggableId,
+      status: destination.droppableId,
+      rank: result.destination.index
+    }
 
-    updateCandidate(candidateToUpdate)
-    fetch(`candidates/${candidateToUpdate.id}/update_status/${candidateToUpdate.status}.json`, { method: 'post' })
+    fetch(`candidates/${candidateToUpdate.id}`, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(candidateToUpdate)
+    })
   }
 
   const statusValues = Object.values(data.status)

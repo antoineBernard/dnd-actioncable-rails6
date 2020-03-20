@@ -13,14 +13,13 @@ AllCops:
 Style/Documentation:
   Enabled: false
 
+Metrics/AbcSize:
+  Enabled: false
+
 Layout/LineLength:
   Enabled: false
 
 Metrics/MethodLength:
-  Exclude:
-    - 'app/decorators/concerns/translatable.rb'
-
-Metrics/AbcSize:
   Exclude:
     - 'app/decorators/concerns/translatable.rb'
 
@@ -30,9 +29,12 @@ Metrics/BlockLength:
 
 Style/HashEachMethods:
   Enabled: true
+
 Style/HashTransformKeys:
   Enabled: true
+
 Style/HashTransformValues:
   Enabled: true
+
 Metrics/BlockLength:
   Enabled: false

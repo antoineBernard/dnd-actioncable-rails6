@@ -10,4 +10,5 @@ json.candidates @candidates do |candidate|
   json.status    candidate.status
   json.score     candidate.score.round(1)
   json.likes     candidate.likes
+  json.rank      candidate.rank
 end

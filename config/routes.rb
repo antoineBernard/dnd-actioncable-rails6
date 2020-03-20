@@ -4,5 +4,5 @@ Rails.application.routes.draw do
 
   resources :candidates, only: %i(index)
 
-  post 'candidates/:id/update_status/:status', to: 'candidates#update_status', as: :update_status
+  post 'candidates/:id', to: 'candidates#update'
 end

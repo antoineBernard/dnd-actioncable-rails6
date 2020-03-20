@@ -6,21 +6,25 @@ class CandidatesController < ApplicationController
   def index
     respond_to do |format|
       format.json do
-        @candidates = Candidate.all
+        @candidates = Candidate.all.order(:rank)
       end
       format.html { ; }
     end
   end
 
-  def update_status
+  def update
     candidate = Candidate.find(params[:id])
 
-    candidate.assign_attributes(status: params[:status])
+    updatedData = JSON.parse(request.body.read)
+
+    candidate.assign_attributes(status: updatedData['status'])
 
     if candidate.save
-      ActionCable.server.broadcast 'candidates_channel', updatedCandidate: {
-        id: candidate.id, status: candidate.status
-      }
+      candidate.apply_rank_update(updatedData['rank']) if updatedData['rank']
+
+      ActionCable.server.broadcast 'candidates_channel', updatedCandidates: Candidate.all.order(:rank).map { |c| {
+        id: c.id, firstName: c.first_name, lastName: c.last_name, jobTitle: c.role, status: c.status, score: c.score, likes: c.likes, rank: c.rank
+      } }.to_json
 
       render plain: { success: true }.to_json, status: 200, content_type: 'application/json'
     else
