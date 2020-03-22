@@ -1,5 +1,11 @@
 *Ruby on Rails 6 with ReactJS front - Testing Action Cable with fancy drag and drop*
 
+Using Rails 6, actionecable and ReactJS with react-beautiful-dnd library, we will build a Trello-like poc.
+
+Here the result :
+
+![image](./dnd-react-6-reord.gif)
+
  Quickstart
 ====================
 
@@ -18,7 +24,7 @@ Install ruby 2.7.0 (with RVM)
 	rvm install 2.7.0
 	rvm use 2.7.0
 
-Install Postgresql and start service (on MacOS)
+Install Postgresql and start service
 ---------
 * MacOS
    brew install postgresql
@@ -40,8 +46,8 @@ Install Yarn
 
 Configure database.yml
 ---------
-* Copy .database.yml.example dans database.yml (create a new file)
-* In database.yml replace YOUR USERNAME et YOUR PASSWORD with postgres user with creation right.
+* Copy .database.yml.example in database.yml (create a new file)
+* In database.yml replace YOUR USERNAME and YOUR PASSWORD with postgres user with creation right.
   To see users in postgresql :
     - psql postgres
     - \du
@@ -61,10 +67,10 @@ Run local server
 
 Then look on localhost:3000 !
 
-Run tests and linters
+Run all tests and all linters
 ---------
     sh alltests
 
-Run only linters (Rubocop and EsLint)
+Run linters (Rubocop and EsLint)
 ---------
     sh alllinters
