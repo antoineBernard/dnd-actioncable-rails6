@@ -22,10 +22,6 @@ Layout/LineLength:
 Metrics/MethodLength:
   Enabled: false
 
-Metrics/BlockLength:
-  Exclude:
-    - 'spec/support/matcher/translate_field_values_matcher.rb'
-
 Style/HashEachMethods:
   Enabled: true
 
