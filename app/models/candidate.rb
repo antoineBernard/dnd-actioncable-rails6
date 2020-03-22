@@ -20,8 +20,6 @@ class Candidate < ApplicationRecord
   end
 
   def apply_rank_update(new_rank)
-    return unless new_rank
-
     old_rank = rank
 
     candidates = Candidate.all

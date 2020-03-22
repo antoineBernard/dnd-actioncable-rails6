@@ -85,5 +85,20 @@ describe Candidate, type: :model do
         ].map(&:rank)).to eq [0, 1, 2, 3, 4, 5]
       end
     end
+
+    describe 'when i place first in third position' do
+      before { first.apply_rank_update 2 }
+
+      it 'should update candidates rank' do
+        expect([
+          second.reload,
+          third .reload,
+          first .reload,
+          fourth.reload,
+          five  .reload,
+          six   .reload
+        ].map(&:rank)).to eq [0, 1, 2, 3, 4, 5]
+      end
+    end
   end
 end

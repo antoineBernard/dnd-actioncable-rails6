@@ -30,6 +30,24 @@ const CandidatesIndex = () => {
     }
   });
 
+  const findNewRank = (source, destination) => {
+    let destinationCandidates = data.candidates.filter((c) => { return(c.status === destination.droppableId) })
+    let candidateBefore = destinationCandidates[destination.index - 1]
+    let candidateAfter  = destinationCandidates[destination.index]
+
+    // by default let respect the true index
+    let newRank = destination.index
+    let changingColmun = destination.droppableId !== source.droppableId
+
+    if(candidateBefore) { newRank = candidateBefore.rank + 1 }
+    if(candidateAfter)  { newRank = candidateAfter.rank - 1 }
+
+    // compensation for leaving space in ranking through column
+    if(changingColmun && destination.index > source.index) { newRank = newRank - 1}
+
+    return newRank
+  }
+
   const onDragEnd = result => {
     const { destination, source, draggableId } = result
 
@@ -44,7 +62,7 @@ const CandidatesIndex = () => {
     let candidateToUpdate = {
       id: draggableId,
       status: destination.droppableId,
-      rank: result.destination.index
+      rank: findNewRank(result.source, result.destination)
     }
 
     fetch(`candidates/${candidateToUpdate.id}`, {
