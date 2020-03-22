@@ -15,16 +15,18 @@ class CandidatesController < ApplicationController
   def update
     candidate = Candidate.find(params[:id])
 
-    updatedData = JSON.parse(request.body.read)
+    updated_data = JSON.parse(request.body.read)
 
-    candidate.assign_attributes(status: updatedData['status'])
+    candidate.assign_attributes(status: updated_data['status'])
 
     if candidate.save
-      candidate.apply_rank_update(updatedData['rank']) if updatedData['rank']
+      candidate.apply_rank_update(updated_data['rank']) if updated_data['rank']
 
-      ActionCable.server.broadcast 'candidates_channel', updatedCandidates: Candidate.all.order(:rank).map { |c| {
-        id: c.id, firstName: c.first_name, lastName: c.last_name, jobTitle: c.role, status: c.status, score: c.score, likes: c.likes, rank: c.rank
-      } }.to_json
+      ActionCable.server.broadcast 'candidates_channel', updatedCandidates: Candidate.all.order(:rank).map { |c|
+                                                                              {
+                                                                                id: c.id, firstName: c.first_name, lastName: c.last_name, jobTitle: c.role, status: c.status, score: c.score, likes: c.likes, rank: c.rank
+                                                                              }
+                                                                            } .to_json
 
       render plain: { success: true }.to_json, status: 200, content_type: 'application/json'
     else

@@ -37,13 +37,13 @@ const CandidatesIndex = () => {
 
     // by default let respect the true index
     let newRank = destination.index
-    let changingColmun = destination.droppableId !== source.droppableId
+    let changingColumn = destination.droppableId !== source.droppableId
 
     if(candidateBefore) { newRank = candidateBefore.rank + 1 }
-    if(candidateAfter)  { newRank = candidateAfter.rank - 1 }
+    if(candidateAfter && !candidateBefore)  { newRank = candidateAfter.rank }
 
     // compensation for leaving space in ranking through column
-    if(changingColmun && destination.index > source.index) { newRank = newRank - 1}
+    if(changingColumn && destination.index > source.index) { newRank = newRank - 1 }
 
     return newRank
   }

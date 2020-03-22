@@ -20,8 +20,7 @@ Layout/LineLength:
   Enabled: false
 
 Metrics/MethodLength:
-  Exclude:
-    - 'app/decorators/concerns/translatable.rb'
+  Enabled: false
 
 Metrics/BlockLength:
   Exclude:

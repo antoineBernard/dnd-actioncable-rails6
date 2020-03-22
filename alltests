@@ -2,9 +2,11 @@
 bundle exec rspec spec
 echo ""
 echo "Rails specs finished ! Yepeee !"
-echo ""
-bundle exec yarn test
-echo ""
-echo "Yarn tests finished ! Y.. Ye... Yepee..."
+
+# echo ""
+# bundle exec yarn test
+# echo ""
+# echo "Yarn tests finished ! Y.. Ye... Yepee..."
+echo " Running Ruby and Javascript linters :"
 echo ""
 sh alllinters
