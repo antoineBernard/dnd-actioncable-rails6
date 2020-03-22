@@ -23,12 +23,24 @@ const CandidatesIndex = () => {
   // Sub to backend websocket
   consumer.subscriptions.create("CandidatesChannel", {
     received(updatedData) {
-     setData({
-       status: data.status,
-       candidates: JSON.parse(updatedData.updatedCandidates)
-     })
+      let oldData = data
+      setData({
+        status: oldData.status,
+        candidates: JSON.parse(updatedData.updatedCandidates)
+      })
     }
   });
+
+  const sendUpdateToBackEnd = (candidateToUpdate) => {
+    fetch(`candidates/${candidateToUpdate.id}`, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(candidateToUpdate)
+    })
+  }
 
   const findNewRank = (source, destination) => {
     let destinationCandidates = data.candidates.filter((c) => { return(c.status === destination.droppableId) })
@@ -40,7 +52,7 @@ const CandidatesIndex = () => {
     let changingColumn = destination.droppableId !== source.droppableId
 
     if(candidateBefore) { newRank = candidateBefore.rank + 1 }
-    if(candidateAfter && !candidateBefore)  { newRank = candidateAfter.rank }
+    if(candidateAfter && !candidateBefore)  { newRank = candidateAfter.rank - 1 }
 
     // compensation for leaving space in ranking through column
     if(changingColumn && destination.index > source.index) { newRank = newRank - 1 }
@@ -53,11 +65,9 @@ const CandidatesIndex = () => {
 
     if(!destination) { return; }
 
-    if(
-      // card didn't moove
-      destination.droppableId === source.droppableId &&
-      destination.index === source.index
-    ) { return; }
+    const cardDidntMoove = destination.droppableId === source.droppableId && destination.index === source.index
+    if(cardDidntMoove)
+     { return; }
 
     let candidateToUpdate = {
       id: draggableId,
@@ -65,14 +75,9 @@ const CandidatesIndex = () => {
       rank: findNewRank(result.source, result.destination)
     }
 
-    fetch(`candidates/${candidateToUpdate.id}`, {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(candidateToUpdate)
-    })
+    sendUpdateToBackEnd(candidateToUpdate)
+
+    setData({status: data.status, candidates: []})
   }
 
   const statusValues = Object.values(data.status)

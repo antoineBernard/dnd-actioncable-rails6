@@ -1,6 +1,6 @@
 import React from 'react'
 import { Draggable } from 'react-beautiful-dnd';
-import { thumbsUp, ThumbsUp, MessageSquare, User } from 'react-feather'
+import { ThumbsUp, MessageSquare, User } from 'react-feather'
 import PropTypes from 'prop-types'
 
 const Card = ({candidate, index}) => {
